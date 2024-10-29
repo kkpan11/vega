@@ -29,7 +29,8 @@ const d3Deps = [
 
 const esmDeps = [
   ...d3Deps,
-  'd3-geo-projection'
+  'd3-geo-projection',
+  'd3-scale-chromatic'
 ];
 
 const d3CoreDeps = [
@@ -116,7 +117,7 @@ export default function(commandLineArgs) {
 
   const outputs = [{
     input: './index.js',
-    external: dependencies.filter(dep => esmDeps.indexOf(dep) < 0),
+    external: dependencies.filter(dep => !esmDeps.includes(dep)),
     onwarn,
     output: {
       file: pkg.main,
