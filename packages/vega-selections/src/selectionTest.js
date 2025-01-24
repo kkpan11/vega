@@ -7,6 +7,12 @@ const TYPE_ENUM = 'E',
     TYPE_RANGE_EXC = 'R-E',
     TYPE_RANGE_LE = 'R-LE',
     TYPE_RANGE_RE = 'R-RE',
+    TYPE_PRED_LT = 'E-LT',
+    TYPE_PRED_LTE = 'E-LTE',
+    TYPE_PRED_GT = 'E-GT',
+    TYPE_PRED_GTE = 'E-GTE',
+    TYPE_PRED_VALID = 'E-VALID',
+    TYPE_PRED_ONE_OF = 'E-ONE',
     UNIT_INDEX = 'index:unit';
 
 // TODO: revisit date coercion?
@@ -22,12 +28,12 @@ function testPoint(datum, entry) {
 
     if (isDate(dval)) dval = toNumber(dval);
     if (isDate(values[i])) values[i] = toNumber(values[i]);
-    if (isDate(values[i][0])) values[i] = values[i].map(toNumber);
+    if (isArray(values[i]) && isDate(values[i][0])) values[i] = values[i].map(toNumber);
 
     if (f.type === TYPE_ENUM) {
       // Enumerated fields can either specify individual values (single/multi selections)
       // or an array of values (interval selections).
-      if(isArray(values[i]) ? values[i].indexOf(dval) < 0 : dval !== values[i]) {
+      if(isArray(values[i]) ? !values[i].includes(dval) : dval !== values[i]) {
         return false;
       }
     } else {
@@ -40,6 +46,18 @@ function testPoint(datum, entry) {
         if (!inrange(dval, values[i], false, false)) return false;
       } else if (f.type === TYPE_RANGE_LE) {
         if (!inrange(dval, values[i], false, true)) return false;
+      } else if (f.type === TYPE_PRED_LT) {
+        if (dval >= values[i]) return false;
+      } else if (f.type === TYPE_PRED_LTE) {
+        if (dval > values[i]) return false;
+      } else if (f.type === TYPE_PRED_GT) {
+        if (dval <= values[i]) return false;
+      } else if (f.type === TYPE_PRED_GTE) {
+        if (dval < values[i]) return false;
+      } else if (f.type === TYPE_PRED_VALID) {
+        if (dval === null || isNaN(dval)) return false;
+      } else if (f.type === TYPE_PRED_ONE_OF) {
+        if (values[i].indexOf(dval) === -1) return false;
       }
     }
   }
