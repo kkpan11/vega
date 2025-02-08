@@ -35,7 +35,7 @@
   function accessorFields(fn) {
     return fn == null ? null : fn.fields;
   }
-  function getter(path) {
+  function getter$1(path) {
     return path.length === 1 ? get1(path[0]) : getN(path);
   }
   const get1 = field => function (obj) {
@@ -112,7 +112,7 @@
   function field$1(field, name, opt) {
     const path = splitAccessPath(field);
     field = path.length === 1 ? path[0] : field;
-    return accessor((opt && opt.get || getter)(path), [field], name || field);
+    return accessor((opt && opt.get || getter$1)(path), [field], name || field);
   }
   const id = field$1('id');
   const identity = accessor(_ => _, [], 'identity');
@@ -124,7 +124,6 @@
     const args = [level].concat([].slice.call(input));
     console[method].apply(console, args); // eslint-disable-line no-console
   }
-
   const None$2 = 0;
   const Error$1 = 1;
   const Warn = 2;
@@ -455,9 +454,8 @@
     }
     return [u, v];
   }
-  const hop = Object.prototype.hasOwnProperty;
   function has$1(object, property) {
-    return hop.call(object, property);
+    return Object.hasOwn(object, property);
   }
   const NULL = {};
   function fastmap(input) {
@@ -595,7 +593,7 @@
       fields = flat ? array$2(fields).map(f => f.replace(/\\(.)/g, '$1')) : array$2(fields);
     }
     const len = fields && fields.length,
-      gen = opt && opt.get || getter,
+      gen = opt && opt.get || getter$1,
       map = f => gen(flat ? [f] : splitAccessPath(f));
     let fn;
     if (!len) {
@@ -1058,7 +1056,6 @@
       if (c >= 48 && c <= 57) return i + 1; // is digit
     }
   }
-
   function numberLocale(locale) {
     const format = memoize(locale.format),
       formatPrefix = locale.formatPrefix;
@@ -1234,7 +1231,7 @@
       options: options || {},
       sanitize: sanitize,
       load: load$1,
-      fileAccess: !!fs,
+      fileAccess: false,
       file: fileLoader(fs),
       http: httpLoader(fetch)
     });
@@ -2490,7 +2487,6 @@
       }
     }
   }
-
   function updater(target, update) {
     update = isFunction(update) ? update : constant$1(update);
     return target ? function (_, pulse) {
@@ -3922,67 +3918,67 @@
       p;
     if (w < 6.25) {
       w -= 3.125;
-      p = -3.6444120640178196996e-21;
-      p = -1.685059138182016589e-19 + p * w;
+      p = -364441206401782e-35;
+      p = -16850591381820166e-35 + p * w;
       p = 1.2858480715256400167e-18 + p * w;
       p = 1.115787767802518096e-17 + p * w;
-      p = -1.333171662854620906e-16 + p * w;
+      p = -1333171662854621e-31 + p * w;
       p = 2.0972767875968561637e-17 + p * w;
       p = 6.6376381343583238325e-15 + p * w;
-      p = -4.0545662729752068639e-14 + p * w;
-      p = -8.1519341976054721522e-14 + p * w;
+      p = -4054566272975207e-29 + p * w;
+      p = -8151934197605472e-29 + p * w;
       p = 2.6335093153082322977e-12 + p * w;
-      p = -1.2975133253453532498e-11 + p * w;
-      p = -5.4154120542946279317e-11 + p * w;
+      p = -12975133253453532e-27 + p * w;
+      p = -5415412054294628e-26 + p * w;
       p = 1.051212273321532285e-09 + p * w;
-      p = -4.1126339803469836976e-09 + p * w;
-      p = -2.9070369957882005086e-08 + p * w;
+      p = -4.112633980346984e-9 + p * w;
+      p = -2.9070369957882005e-8 + p * w;
       p = 4.2347877827932403518e-07 + p * w;
-      p = -1.3654692000834678645e-06 + p * w;
-      p = -1.3882523362786468719e-05 + p * w;
+      p = -13654692000834679e-22 + p * w;
+      p = -13882523362786469e-21 + p * w;
       p = 0.0001867342080340571352 + p * w;
-      p = -0.00074070253416626697512 + p * w;
-      p = -0.0060336708714301490533 + p * w;
+      p = -740702534166267e-18 + p * w;
+      p = -0.006033670871430149 + p * w;
       p = 0.24015818242558961693 + p * w;
       p = 1.6536545626831027356 + p * w;
     } else if (w < 16.0) {
       w = Math.sqrt(w) - 3.25;
       p = 2.2137376921775787049e-09;
       p = 9.0756561938885390979e-08 + p * w;
-      p = -2.7517406297064545428e-07 + p * w;
+      p = -2.7517406297064545e-7 + p * w;
       p = 1.8239629214389227755e-08 + p * w;
       p = 1.5027403968909827627e-06 + p * w;
-      p = -4.013867526981545969e-06 + p * w;
+      p = -4013867526981546e-21 + p * w;
       p = 2.9234449089955446044e-06 + p * w;
       p = 1.2475304481671778723e-05 + p * w;
-      p = -4.7318229009055733981e-05 + p * w;
+      p = -47318229009055734e-21 + p * w;
       p = 6.8284851459573175448e-05 + p * w;
       p = 2.4031110387097893999e-05 + p * w;
-      p = -0.0003550375203628474796 + p * w;
+      p = -3550375203628475e-19 + p * w;
       p = 0.00095328937973738049703 + p * w;
-      p = -0.0016882755560235047313 + p * w;
+      p = -0.0016882755560235047 + p * w;
       p = 0.0024914420961078508066 + p * w;
-      p = -0.0037512085075692412107 + p * w;
+      p = -0.003751208507569241 + p * w;
       p = 0.005370914553590063617 + p * w;
       p = 1.0052589676941592334 + p * w;
       p = 3.0838856104922207635 + p * w;
     } else if (Number.isFinite(w)) {
       w = Math.sqrt(w) - 5.0;
-      p = -2.7109920616438573243e-11;
-      p = -2.5556418169965252055e-10 + p * w;
+      p = -27109920616438573e-27;
+      p = -2555641816996525e-25 + p * w;
       p = 1.5076572693500548083e-09 + p * w;
-      p = -3.7894654401267369937e-09 + p * w;
+      p = -3.789465440126737e-9 + p * w;
       p = 7.6157012080783393804e-09 + p * w;
-      p = -1.4960026627149240478e-08 + p * w;
+      p = -1.496002662714924e-8 + p * w;
       p = 2.9147953450901080826e-08 + p * w;
-      p = -6.7711997758452339498e-08 + p * w;
+      p = -6.771199775845234e-8 + p * w;
       p = 2.2900482228026654717e-07 + p * w;
-      p = -9.9298272942317002539e-07 + p * w;
+      p = -9.9298272942317e-7 + p * w;
       p = 4.5260625972231537039e-06 + p * w;
-      p = -1.9681778105531670567e-05 + p * w;
+      p = -1968177810553167e-20 + p * w;
       p = 7.5995277030017761139e-05 + p * w;
-      p = -0.00021503011930044477347 + p * w;
-      p = -0.00013871931833623122026 + p * w;
+      p = -21503011930044477e-20 + p * w;
+      p = -13871931833623122e-20 + p * w;
       p = 1.0103004648645343977 + p * w;
       p = 4.8499064014085844221 + p * w;
     } else {
@@ -4789,7 +4785,7 @@
     },
     sum: {
       init: m => m.sum = 0,
-      value: m => m.sum,
+      value: m => m.valid ? m.sum : undefined,
       add: (m, v) => m.sum += +v,
       rem: (m, v) => m.sum -= v
     },
@@ -4915,20 +4911,35 @@
       },
       req: ['max', 'values'],
       idx: 3
+    },
+    exponential: {
+      init: (m, r) => {
+        m.exp = 0;
+        m.exp_r = r;
+      },
+      value: m => m.valid ? m.exp * (1 - m.exp_r) / (1 - m.exp_r ** m.valid) : undefined,
+      add: (m, v) => m.exp = m.exp_r * m.exp + v,
+      rem: (m, v) => m.exp = (m.exp - v / m.exp_r ** (m.valid - 1)) / m.exp_r
+    },
+    exponentialb: {
+      value: m => m.valid ? m.exp * (1 - m.exp_r) : undefined,
+      req: ['exponential'],
+      idx: 1
     }
   };
   const ValidAggregateOps = Object.keys(AggregateOps).filter(d => d !== '__count__');
   function measure(key, value) {
-    return out => extend({
+    return (out, aggregate_param) => extend({
       name: key,
+      aggregate_param: aggregate_param,
       out: out || key
     }, base_op, value);
   }
   [...ValidAggregateOps, '__count__'].forEach(key => {
     AggregateOps[key] = measure(key, AggregateOps[key]);
   });
-  function createMeasure(op, name) {
-    return AggregateOps[op](name);
+  function createMeasure(op, param, name) {
+    return AggregateOps[op](name, param);
   }
   function compareIndex(a, b) {
     return a.idx - b.idx;
@@ -4948,7 +4959,7 @@
   function init() {
     this.valid = 0;
     this.missing = 0;
-    this._ops.forEach(op => op.init(this));
+    this._ops.forEach(op => op.aggregate_param == null ? op.init(this) : op.init(this, op.aggregate_param));
   }
   function add$1(v, t) {
     if (v == null || v === '') {
@@ -5112,6 +5123,7 @@
    * @param {Array<function(object): *>} [params.groupby] - An array of accessors to groupby.
    * @param {Array<function(object): *>} [params.fields] - An array of accessors to aggregate.
    * @param {Array<string>} [params.ops] - An array of strings indicating aggregation operations.
+   * @param {Array<number>} [params.aggregate_params] - An optional array of parameters for aggregation operations.
    * @param {Array<string>} [params.as] - An array of output field names for aggregated values.
    * @param {boolean} [params.cross=false] - A flag indicating that the full
    *   cross-product of groupby values should be generated, including empty cells.
@@ -5138,7 +5150,6 @@
     this._inputs = null; // array of dependent input tuple field names
     this._outputs = null; // array of output tuple field names
   }
-
   Aggregate$1.Definition = {
     'type': 'Aggregate',
     'metadata': {
@@ -5154,6 +5165,11 @@
       'type': 'enum',
       'array': true,
       'values': ValidAggregateOps
+    }, {
+      'name': 'aggregate_params',
+      'type': 'number',
+      'null': true,
+      'array': true
     }, {
       'name': 'fields',
       'type': 'field',
@@ -5276,16 +5292,18 @@
       this._measures = [];
       const fields = _.fields || [null],
         ops = _.ops || ['count'],
+        aggregate_params = _.aggregate_params || [null],
         as = _.as || [],
         n = fields.length,
         map = {};
-      let field, op, m, mname, outname, i;
+      let field, op, aggregate_param, m, mname, outname, i;
       if (n !== ops.length) {
         error('Unmatched number of fields and aggregate ops.');
       }
       for (i = 0; i < n; ++i) {
         field = fields[i];
         op = ops[i];
+        aggregate_param = aggregate_params[i] || null;
         if (field == null && op !== 'count') {
           error('Null aggregate field specified.');
         }
@@ -5304,12 +5322,11 @@
           this._measures.push(m);
         }
         if (op !== 'count') this._countOnly = false;
-        m.push(createMeasure(op, outname));
+        m.push(createMeasure(op, aggregate_param, outname));
       }
       this._measures = this._measures.map(m => compileMeasures(m, m.field));
       return Object.create(null); // aggregation cells (this.value)
     },
-
     // -- Cell Management -----
 
     cellkey: groupkey(),
@@ -5429,13 +5446,11 @@
         add.push(this.celltuple(adds[i]));
         adds[i] = null; // for garbage collection
       }
-
       for (i = 0, n = this._mlen; i < n; ++i) {
         cell = mods[i];
         (cell.num === 0 && drop ? rem : mod).push(this.celltuple(cell));
         mods[i] = null; // for garbage collection
       }
-
       this._alen = this._mlen = 0; // reset list of active cells
       this._prev = null;
       return out;
@@ -5734,7 +5749,6 @@
       }
       return this._finish(pulse, as); // generate output tuples
     },
-
     _parameterCheck(_, pulse) {
       let init = false;
       if (_.modified('stopwords') || !this._stop) {
@@ -6138,7 +6152,6 @@
       if (this.value && !(_.modified() || pulse.changed())) {
         return pulse; // early exit
       }
-
       const source = pulse.materialize(pulse.SOURCE).source,
         groups = partition$1$1(pulse.source, _.groupby, identity),
         smooth = _.smooth || false,
@@ -6375,7 +6388,6 @@
       for (; i < n && a[i] != null; ++i) {
         a[i] = null; // ensure old flows can be garbage collected
       }
-
       a.active = m;
     },
     transform(_, pulse) {
@@ -6961,12 +6973,10 @@
         this.celltuple(adds[i]);
         adds[i] = null; // for garbage collection
       }
-
       for (i = 0, n = this._mlen; i < n; ++i) {
         this.celltuple(mods[i]);
         mods[i] = null; // for garbage collection
       }
-
       this._alen = this._mlen = 0; // reset list of active cells
     }
   });
@@ -7847,7 +7857,6 @@
     Transform.call(this, null, params);
     this.modified(true); // always treat as modified
   }
-
   inherits(Sieve$1, Transform, {
     transform(_, pulse) {
       this.value = pulse.source;
@@ -8169,6 +8178,7 @@
     const ops = array$2(_.ops),
       fields = array$2(_.fields),
       params = array$2(_.params),
+      aggregate_params = array$2(_.aggregate_params),
       as = array$2(_.as),
       outputs = this.outputs = [],
       windows = this.windows = [],
@@ -8183,6 +8193,8 @@
     visitInputs(_.sort);
     ops.forEach((op, i) => {
       const field = fields[i],
+        param = params[i],
+        aggregate_param = aggregate_params[i] || null,
         mname = accessorName(field),
         name = measureName(op, mname, as[i]);
       visitInputs(field);
@@ -8190,7 +8202,7 @@
 
       // Window operation
       if (has$1(WindowOps, op)) {
-        windows.push(WindowOp(op, fields[i], params[i], name));
+        windows.push(WindowOp(op, field, param, name));
       }
 
       // Aggregate operation
@@ -8209,7 +8221,7 @@
           m.field = field;
           measures.push(m);
         }
-        m.push(createMeasure(op, name));
+        m.push(createMeasure(op, aggregate_param, name));
       }
     });
     if (counts.length || measures.length) {
@@ -8296,6 +8308,7 @@
    * @param {Array<function(object): *>} [params.fields] - An array of accessors
    *   for data fields to use as inputs to window operations.
    * @param {Array<*>} [params.params] - An array of parameter values for window operations.
+   * @param {Array<number>} [params.aggregate_params] - An optional array of parameter values for aggregation operations.
    * @param {Array<string>} [params.as] - An array of output field names for window operations.
    * @param {Array<number>} [params.frame] - Window frame definition as two-element array.
    * @param {boolean} [params.ignorePeers=false] - If true, base window frame boundaries on row
@@ -8326,6 +8339,11 @@
       'values': ValidWindowOps.concat(ValidAggregateOps)
     }, {
       'name': 'params',
+      'type': 'number',
+      'null': true,
+      'array': true
+    }, {
+      'name': 'aggregate_params',
       'type': 'number',
       'null': true,
       'array': true
@@ -8497,6 +8515,34 @@
     return null;
   }
   const domImage = () => typeof Image !== 'undefined' ? Image : null;
+
+  function colors$1 (specifier) {
+    var n = specifier.length / 6 | 0,
+      colors = new Array(n),
+      i = 0;
+    while (i < n) colors[i] = "#" + specifier.slice(i * 6, ++i * 6);
+    return colors;
+  }
+
+  var schemeCategory10 = colors$1("1f77b4ff7f0e2ca02cd627289467bd8c564be377c27f7f7fbcbd2217becf");
+
+  var schemeAccent = colors$1("7fc97fbeaed4fdc086ffff99386cb0f0027fbf5b17666666");
+
+  var schemeDark2 = colors$1("1b9e77d95f027570b3e7298a66a61ee6ab02a6761d666666");
+
+  var schemeObservable10 = colors$1("4269d0efb118ff725c6cc5b03ca951ff8ab7a463f297bbf59c6b4e9498a0");
+
+  var schemePaired = colors$1("a6cee31f78b4b2df8a33a02cfb9a99e31a1cfdbf6fff7f00cab2d66a3d9affff99b15928");
+
+  var schemePastel1 = colors$1("fbb4aeb3cde3ccebc5decbe4fed9a6ffffcce5d8bdfddaecf2f2f2");
+
+  var schemePastel2 = colors$1("b3e2cdfdcdaccbd5e8f4cae4e6f5c9fff2aef1e2cccccccc");
+
+  var schemeSet1 = colors$1("e41a1c377eb84daf4a984ea3ff7f00ffff33a65628f781bf999999");
+
+  var schemeSet2 = colors$1("66c2a5fc8d628da0cbe78ac3a6d854ffd92fe5c494b3b3b3");
+
+  var schemeSet3 = colors$1("8dd3c7ffffb3bebadafb807280b1d3fdb462b3de69fccde5d9d9d9bc80bdccebc5ffed6f");
 
   function bandSpace(count, paddingInner, paddingOuter) {
     const space = count - paddingInner + paddingOuter * 2;
@@ -8973,22 +9019,24 @@
     darkRed: '3434347036339e3c38cc4037e75d1eec8620eeab29f0ce32ffeb2c'
   };
   const discrete = {
-    category10: '1f77b4ff7f0e2ca02cd627289467bd8c564be377c27f7f7fbcbd2217becf',
+    accent: schemeAccent,
+    category10: schemeCategory10,
     category20: '1f77b4aec7e8ff7f0effbb782ca02c98df8ad62728ff98969467bdc5b0d58c564bc49c94e377c2f7b6d27f7f7fc7c7c7bcbd22dbdb8d17becf9edae5',
     category20b: '393b795254a36b6ecf9c9ede6379398ca252b5cf6bcedb9c8c6d31bd9e39e7ba52e7cb94843c39ad494ad6616be7969c7b4173a55194ce6dbdde9ed6',
     category20c: '3182bd6baed69ecae1c6dbefe6550dfd8d3cfdae6bfdd0a231a35474c476a1d99bc7e9c0756bb19e9ac8bcbddcdadaeb636363969696bdbdbdd9d9d9',
+    dark2: schemeDark2,
+    observable10: schemeObservable10,
+    paired: schemePaired,
+    pastel1: schemePastel1,
+    pastel2: schemePastel2,
+    set1: schemeSet1,
+    set2: schemeSet2,
+    set3: schemeSet3,
     tableau10: '4c78a8f58518e4575672b7b254a24beeca3bb279a2ff9da69d755dbab0ac',
-    tableau20: '4c78a89ecae9f58518ffbf7954a24b88d27ab79a20f2cf5b43989483bcb6e45756ff9d9879706ebab0acd67195fcbfd2b279a2d6a5c99e765fd8b5a5',
-    accent: '7fc97fbeaed4fdc086ffff99386cb0f0027fbf5b17666666',
-    dark2: '1b9e77d95f027570b3e7298a66a61ee6ab02a6761d666666',
-    paired: 'a6cee31f78b4b2df8a33a02cfb9a99e31a1cfdbf6fff7f00cab2d66a3d9affff99b15928',
-    pastel1: 'fbb4aeb3cde3ccebc5decbe4fed9a6ffffcce5d8bdfddaecf2f2f2',
-    pastel2: 'b3e2cdfdcdaccbd5e8f4cae4e6f5c9fff2aef1e2cccccccc',
-    set1: 'e41a1c377eb84daf4a984ea3ff7f00ffff33a65628f781bf999999',
-    set2: '66c2a5fc8d628da0cbe78ac3a6d854ffd92fe5c494b3b3b3',
-    set3: '8dd3c7ffffb3bebadafb807280b1d3fdb462b3de69fccde5d9d9d9bc80bdccebc5ffed6f'
+    tableau20: '4c78a89ecae9f58518ffbf7954a24b88d27ab79a20f2cf5b43989483bcb6e45756ff9d9879706ebab0acd67195fcbfd2b279a2d6a5c99e765fd8b5a5'
   };
   function colors(palette) {
+    if (isArray(palette)) return palette;
     const n = palette.length / 6 | 0,
       c = new Array(n);
     for (let i = 0; i < n;) {
@@ -9032,7 +9080,7 @@
         count = Math.max(count, scale.bins.length);
       }
       if (minStep != null) {
-        count = Math.min(count, Math.floor(span(scale.domain()) / minStep || 1));
+        count = Math.min(count, Math.floor(span(scale.domain()) / minStep || 1) + 1);
       }
     }
     if (isObject(count)) {
@@ -9093,7 +9141,7 @@
    * @return {Array<*>} - The generated tick values.
    */
   function tickValues(scale, count) {
-    return scale.bins ? validTicks(scale, scale.bins) : scale.ticks ? scale.ticks(count) : scale.domain();
+    return scale.bins ? validTicks(scale, scale.bins, count) : scale.ticks ? scale.ticks(count) : scale.domain();
   }
 
   /**
@@ -10394,20 +10442,14 @@
     this.items = this.items || [];
   }
   inherits(GroupItem, Item);
-  function ResourceLoader(customLoader) {
-    this._pending = 0;
-    this._loader = customLoader || loader();
-  }
-  function increment(loader) {
-    loader._pending += 1;
-  }
-  function decrement(loader) {
-    loader._pending -= 1;
-  }
-  ResourceLoader.prototype = {
+  class ResourceLoader {
+    constructor(customLoader) {
+      this._pending = 0;
+      this._loader = customLoader || loader();
+    }
     pending() {
       return this._pending;
-    },
+    }
     sanitizeURL(uri) {
       const loader = this;
       increment(loader);
@@ -10420,7 +10462,7 @@
         decrement(loader);
         return null;
       });
-    },
+    }
     loadImage(uri) {
       const loader = this,
         Image = domImage();
@@ -10453,7 +10495,7 @@
           src: e && e.url || ''
         };
       });
-    },
+    }
     ready() {
       const loader = this;
       return new Promise(accept => {
@@ -10465,7 +10507,13 @@
         poll(false);
       });
     }
-  };
+  }
+  function increment(loader) {
+    loader._pending += 1;
+  }
+  function decrement(loader) {
+    loader._pending -= 1;
+  }
   function boundStroke(bounds, item, miter) {
     if (item.stroke && item.opacity !== 0 && item.strokeOpacity !== 0) {
       const sw = item.strokeWidth != null ? +item.strokeWidth : 1;
@@ -10567,7 +10615,6 @@
             sa = ea;
             ea = s; // swap end-points
           }
-
           if (ccw) {
             ea -= Tau;
             s = sa - sa % HalfPi;
@@ -11103,7 +11150,7 @@
   const hitBackground = hitPath(rectanglePath);
   const hitForeground = hitPath(rectanglePath, false);
   const hitCorner = hitPath(rectanglePath, true);
-  function draw$4(context, scene, bounds) {
+  function draw$4(context, scene, bounds, markTypes) {
     visit(scene, group => {
       const gx = group.x || 0,
         gy = group.y || 0,
@@ -11130,7 +11177,9 @@
 
       // draw group contents
       visit(group, item => {
-        this.draw(context, item, bounds);
+        if (item.marktype === 'group' || markTypes == null || markTypes.includes(item.marktype)) {
+          this.draw(context, item, bounds, markTypes);
+        }
       });
 
       // restore graphics context
@@ -11499,10 +11548,13 @@
       // we are using canvas
       const currentFont = font(item);
       return text => _measureWidth(text, currentFont);
-    } else {
+    } else if (textMetrics.width === estimateWidth) {
       // we are relying on estimates
       const currentFontHeight = fontSize(item);
       return text => _estimateWidth(text, currentFontHeight);
+    } else {
+      // User defined textMetrics.width function in use (e.g. vl-convert)
+      return text => textMetrics.width(item, text);
     }
   }
   function truncate(item, text) {
@@ -11640,7 +11692,6 @@
         context.rotate(item.angle * DegToRad);
         x = y = 0; // reset x, y
       }
-
       x += item.dx || 0;
       y += (item.dy || 0) + offset$2(item);
       tl = textLines(item);
@@ -11784,7 +11835,6 @@
   // font
   'description', 'aria', 'ariaRole', 'ariaRoleDescription' // aria
   ];
-
   function sceneToJSON(scene, indent) {
     return JSON.stringify(scene, keys$1, indent);
   }
@@ -11809,22 +11859,22 @@
     if (type) boundMark(scene);
     return scene;
   }
-  function Scenegraph(scene) {
-    if (arguments.length) {
-      this.root = sceneFromJSON(scene);
-    } else {
-      this.root = createMark({
-        marktype: 'group',
-        name: 'root',
-        role: 'frame'
-      });
-      this.root.items = [new GroupItem(this.root)];
+  class Scenegraph {
+    constructor(scene) {
+      if (arguments.length) {
+        this.root = sceneFromJSON(scene);
+      } else {
+        this.root = createMark({
+          marktype: 'group',
+          name: 'root',
+          role: 'frame'
+        });
+        this.root.items = [new GroupItem(this.root)];
+      }
     }
-  }
-  Scenegraph.prototype = {
     toJSON(indent) {
       return sceneToJSON(this.root, indent || 0);
-    },
+    }
     mark(markdef, group, index) {
       group = group || this.root.items[0];
       const mark = createMark(markdef, group);
@@ -11832,7 +11882,7 @@
       if (mark.zindex) mark.group.zdirty = true;
       return mark;
     }
-  };
+  }
   function createMark(def, group) {
     const mark = {
       bounds: new Bounds(),
@@ -11920,29 +11970,23 @@
     }
     return item;
   }
+  class Handler {
+    /**
+     * Create a new Handler instance.
+     * @param {object} [customLoader] - Optional loader instance for
+     *   href URL sanitization. If not specified, a standard loader
+     *   instance will be generated.
+     * @param {function} [customTooltip] - Optional tooltip handler
+     *   function for custom tooltip display.
+     * @constructor
+     */
+    constructor(customLoader, customTooltip) {
+      this._active = null;
+      this._handlers = {};
+      this._loader = customLoader || loader();
+      this._tooltip = customTooltip || defaultTooltip$1;
+    }
 
-  /**
-   * Create a new Handler instance.
-   * @param {object} [customLoader] - Optional loader instance for
-   *   href URL sanitization. If not specified, a standard loader
-   *   instance will be generated.
-   * @param {function} [customTooltip] - Optional tooltip handler
-   *   function for custom tooltip display.
-   * @constructor
-   */
-  function Handler(customLoader, customTooltip) {
-    this._active = null;
-    this._handlers = {};
-    this._loader = customLoader || loader();
-    this._tooltip = customTooltip || defaultTooltip$1;
-  }
-
-  // The default tooltip display handler.
-  // Sets the HTML title attribute on the visualization container.
-  function defaultTooltip$1(handler, event, item, value) {
-    handler.element().setAttribute('title', value || '');
-  }
-  Handler.prototype = {
     /**
      * Initialize a new Handler instance.
      * @param {DOMElement} el - The containing DOM element for the display.
@@ -11956,14 +12000,16 @@
       this._el = el;
       this._obj = obj || null;
       return this.origin(origin);
-    },
+    }
+
     /**
      * Returns the parent container element for a visualization.
      * @return {DOMElement} - The containing DOM element.
      */
     element() {
       return this._el;
-    },
+    }
+
     /**
      * Returns the scene element (e.g., canvas or SVG) of the visualization
      * Subclasses must override if the first child is not the scene element.
@@ -11971,7 +12017,8 @@
      */
     canvas() {
       return this._el && this._el.firstChild;
-    },
+    }
+
     /**
      * Get / set the origin coordinates of the visualization.
      */
@@ -11982,7 +12029,8 @@
       } else {
         return this._origin.slice();
       }
-    },
+    }
+
     /**
      * Get / set the scenegraph root.
      */
@@ -11990,15 +12038,18 @@
       if (!arguments.length) return this._scene;
       this._scene = scene;
       return this;
-    },
+    }
+
     /**
      * Add an event handler. Subclasses should override this method.
      */
-    on( /*type, handler*/) {},
+    on(/*type, handler*/) {}
+
     /**
      * Remove an event handler. Subclasses should override this method.
      */
-    off( /*type, handler*/) {},
+    off(/*type, handler*/) {}
+
     /**
      * Utility method for finding the array index of an event handler.
      * @param {Array} h - An array of registered event handlers.
@@ -12013,7 +12064,8 @@
         }
       }
       return -1;
-    },
+    }
+
     /**
      * Returns an array with registered event handlers.
      * @param {string} [type] - The event type to query. Any annotations
@@ -12033,7 +12085,8 @@
         }
       }
       return a;
-    },
+    }
+
     /**
      * Parses an event name string to return the specific event type.
      * For example, given "click.foo" returns "click"
@@ -12043,7 +12096,8 @@
     eventName(name) {
       const i = name.indexOf('.');
       return i < 0 ? name : name.slice(0, i);
-    },
+    }
+
     /**
      * Handle hyperlink navigation in response to an item.href value.
      * @param {Event} event - The event triggering hyperlink navigation.
@@ -12058,8 +12112,9 @@
           a = domCreate(null, 'a');
         for (const name in opt) a.setAttribute(name, opt[name]);
         a.dispatchEvent(e);
-      }).catch(() => {/* do nothing */});
-    },
+      }).catch(() => {});
+    }
+
     /**
      * Handle tooltip display in response to an item.tooltip value.
      * @param {Event} event - The event triggering tooltip display.
@@ -12073,7 +12128,8 @@
         const value = show && item && item.tooltip || null;
         this._tooltip.call(this._obj, this, event, item, value);
       }
-    },
+    }
+
     /**
      * Returns the size of a scenegraph item and its position relative
      * to the viewport.
@@ -12111,21 +12167,27 @@
         bottom: y + height
       };
     }
-  };
-
-  /**
-   * Create a new Renderer instance.
-   * @param {object} [loader] - Optional loader instance for
-   *   image and href URL sanitization. If not specified, a
-   *   standard loader instance will be generated.
-   * @constructor
-   */
-  function Renderer(loader) {
-    this._el = null;
-    this._bgcolor = null;
-    this._loader = new ResourceLoader(loader);
   }
-  Renderer.prototype = {
+
+  // The default tooltip display handler.
+  // Sets the HTML title attribute on the visualization container.
+  function defaultTooltip$1(handler, event, item, value) {
+    handler.element().setAttribute('title', value || '');
+  }
+  class Renderer {
+    /**
+     * Create a new Renderer instance.
+     * @param {object} [loader] - Optional loader instance for
+     *   image and href URL sanitization. If not specified, a
+     *   standard loader instance will be generated.
+     * @constructor
+     */
+    constructor(loader) {
+      this._el = null;
+      this._bgcolor = null;
+      this._loader = new ResourceLoader(loader);
+    }
+
     /**
      * Initialize a new Renderer instance.
      * @param {DOMElement} el - The containing DOM element for the display.
@@ -12140,14 +12202,16 @@
     initialize(el, width, height, origin, scaleFactor) {
       this._el = el;
       return this.resize(width, height, origin, scaleFactor);
-    },
+    }
+
     /**
      * Returns the parent container element for a visualization.
      * @return {DOMElement} - The containing DOM element.
      */
     element() {
       return this._el;
-    },
+    }
+
     /**
      * Returns the scene element (e.g., canvas or SVG) of the visualization
      * Subclasses must override if the first child is not the scene element.
@@ -12155,7 +12219,8 @@
      */
     canvas() {
       return this._el && this._el.firstChild;
-    },
+    }
+
     /**
      * Get / set the background color.
      */
@@ -12163,7 +12228,8 @@
       if (arguments.length === 0) return this._bgcolor;
       this._bgcolor = bgcolor;
       return this;
-    },
+    }
+
     /**
      * Resize the display.
      * @param {number} width - The new coordinate width of the display, in pixels.
@@ -12180,14 +12246,16 @@
       this._origin = origin || [0, 0];
       this._scale = scaleFactor || 1;
       return this;
-    },
+    }
+
     /**
      * Report a dirty item whose bounds should be redrawn.
      * This base class method does nothing. Subclasses that perform
      * incremental should implement this method.
      * @param {Item} item - The dirty item whose bounds should be redrawn.
      */
-    dirty( /*item*/) {},
+    dirty(/*item*/) {}
+
     /**
      * Render an input scenegraph, potentially with a set of dirty items.
      * This method will perform an immediate rendering with available resources.
@@ -12196,15 +12264,17 @@
      * after this method returns. To receive notification when rendering is
      * complete, use the renderAsync method instead.
      * @param {object} scene - The root mark of a scenegraph to render.
+     * @param {Array} markTypes - Array of the mark types to render.
+     *                            If undefined, render all mark types
      * @return {Renderer} - This renderer instance.
      */
-    render(scene) {
+    render(scene, markTypes) {
       const r = this;
 
       // bind arguments into a render call, and cache it
       // this function may be subsequently called for async redraw
       r._call = function () {
-        r._render(scene);
+        r._render(scene, markTypes);
       };
 
       // invoke the renderer
@@ -12214,28 +12284,35 @@
       // async redraws will stash their own copy
       r._call = null;
       return r;
-    },
+    }
+
     /**
      * Internal rendering method. Renderer subclasses should override this
      * method to actually perform rendering.
      * @param {object} scene - The root mark of a scenegraph to render.
+     * @param {Array} markTypes - Array of the mark types to render.
+     *                            If undefined, render all mark types
      */
-    _render( /*scene*/
+    _render(/*scene, markTypes*/
     ) {
       // subclasses to override
-    },
+    }
+
     /**
      * Asynchronous rendering method. Similar to render, but returns a Promise
      * that resolves when all rendering is completed. Sometimes a renderer must
      * perform image loading to get a complete rendering. The returned
      * Promise will not resolve until this process completes.
      * @param {object} scene - The root mark of a scenegraph to render.
+     * @param {Array} markTypes - Array of the mark types to render.
+     *                            If undefined, render all mark types
      * @return {Promise} - A Promise that resolves when rendering is complete.
      */
-    renderAsync(scene) {
-      const r = this.render(scene);
+    renderAsync(scene, markTypes) {
+      const r = this.render(scene, markTypes);
       return this._ready ? this._ready.then(() => r) : Promise.resolve(r);
-    },
+    }
+
     /**
      * Internal method for asynchronous resource loading.
      * Proxies method calls to the ImageLoader, and tracks loading
@@ -12256,7 +12333,8 @@
         });
       }
       return p;
-    },
+    }
+
     /**
      * Sanitize a URL to include as a hyperlink in the rendered scene.
      * This method proxies a call to ImageLoader.sanitizeURL, but also tracks
@@ -12266,7 +12344,8 @@
      */
     sanitizeURL(uri) {
       return this._load('sanitizeURL', uri);
-    },
+    }
+
     /**
      * Requests an image to include in the rendered scene.
      * This method proxies a call to ImageLoader.loadImage, but also tracks
@@ -12277,13 +12356,18 @@
     loadImage(uri) {
       return this._load('loadImage', uri);
     }
-  };
+  }
   const KeyDownEvent = 'keydown';
   const KeyPressEvent = 'keypress';
   const KeyUpEvent = 'keyup';
   const DragEnterEvent = 'dragenter';
   const DragLeaveEvent = 'dragleave';
   const DragOverEvent = 'dragover';
+  const PointerDownEvent = 'pointerdown';
+  const PointerUpEvent = 'pointerup';
+  const PointerMoveEvent = 'pointermove';
+  const PointerOutEvent = 'pointerout';
+  const PointerOverEvent = 'pointerover';
   const MouseDownEvent = 'mousedown';
   const MouseUpEvent = 'mouseup';
   const MouseMoveEvent = 'mousemove';
@@ -12296,93 +12380,60 @@
   const TouchStartEvent = 'touchstart';
   const TouchMoveEvent = 'touchmove';
   const TouchEndEvent = 'touchend';
-  const Events = [KeyDownEvent, KeyPressEvent, KeyUpEvent, DragEnterEvent, DragLeaveEvent, DragOverEvent, MouseDownEvent, MouseUpEvent, MouseMoveEvent, MouseOutEvent, MouseOverEvent, ClickEvent, DoubleClickEvent, WheelEvent, MouseWheelEvent, TouchStartEvent, TouchMoveEvent, TouchEndEvent];
-  const TooltipShowEvent = MouseMoveEvent;
+  const Events = [KeyDownEvent, KeyPressEvent, KeyUpEvent, DragEnterEvent, DragLeaveEvent, DragOverEvent, PointerDownEvent, PointerUpEvent, PointerMoveEvent, PointerOutEvent, PointerOverEvent, MouseDownEvent, MouseUpEvent, MouseMoveEvent, MouseOutEvent, MouseOverEvent, ClickEvent, DoubleClickEvent, WheelEvent, MouseWheelEvent, TouchStartEvent, TouchMoveEvent, TouchEndEvent];
+  const TooltipShowEvent = PointerMoveEvent;
   const TooltipHideEvent = MouseOutEvent;
   const HrefEvent = ClickEvent;
-  function CanvasHandler(loader, tooltip) {
-    Handler.call(this, loader, tooltip);
-    this._down = null;
-    this._touch = null;
-    this._first = true;
-    this._events = {};
-  }
-  const eventBundle = type => type === TouchStartEvent || type === TouchMoveEvent || type === TouchEndEvent ? [TouchStartEvent, TouchMoveEvent, TouchEndEvent] : [type];
+  class CanvasHandler extends Handler {
+    constructor(loader, tooltip) {
+      super(loader, tooltip);
+      this._down = null;
+      this._touch = null;
+      this._first = true;
+      this._events = {};
 
-  // lazily add listeners to the canvas as needed
-  function eventListenerCheck(handler, type) {
-    eventBundle(type).forEach(_ => addEventListener(handler, _));
-  }
-  function addEventListener(handler, type) {
-    const canvas = handler.canvas();
-    if (canvas && !handler._events[type]) {
-      handler._events[type] = 1;
-      canvas.addEventListener(type, handler[type] ? evt => handler[type](evt) : evt => handler.fire(type, evt));
+      // supported events
+      this.events = Events;
+      this.pointermove = move([PointerMoveEvent, MouseMoveEvent], [PointerOverEvent, MouseOverEvent], [PointerOutEvent, MouseOutEvent]);
+      this.dragover = move([DragOverEvent], [DragEnterEvent], [DragLeaveEvent]), this.pointerout = inactive([PointerOutEvent, MouseOutEvent]);
+      this.dragleave = inactive([DragLeaveEvent]);
     }
-  }
-  function move(moveEvent, overEvent, outEvent) {
-    return function (evt) {
-      const a = this._active,
-        p = this.pickEvent(evt);
-      if (p === a) {
-        // active item and picked item are the same
-        this.fire(moveEvent, evt); // fire move
-      } else {
-        // active item and picked item are different
-        if (!a || !a.exit) {
-          // fire out for prior active item
-          // suppress if active item was removed from scene
-          this.fire(outEvent, evt);
-        }
-        this._active = p; // set new active item
-        this.fire(overEvent, evt); // fire over for new active item
-        this.fire(moveEvent, evt); // fire move for new active item
-      }
-    };
-  }
-
-  function inactive(type) {
-    return function (evt) {
-      this.fire(type, evt);
-      this._active = null;
-    };
-  }
-  inherits(CanvasHandler, Handler, {
     initialize(el, origin, obj) {
       this._canvas = el && domFind(el, 'canvas');
 
       // add minimal events required for proper state management
-      [ClickEvent, MouseDownEvent, MouseMoveEvent, MouseOutEvent, DragLeaveEvent].forEach(type => eventListenerCheck(this, type));
-      return Handler.prototype.initialize.call(this, el, origin, obj);
-    },
+      [ClickEvent, MouseDownEvent, PointerDownEvent, PointerMoveEvent, PointerOutEvent, DragLeaveEvent].forEach(type => eventListenerCheck(this, type));
+      return super.initialize(el, origin, obj);
+    }
+
     // return the backing canvas instance
     canvas() {
       return this._canvas;
-    },
+    }
+
     // retrieve the current canvas context
     context() {
       return this._canvas.getContext('2d');
-    },
-    // supported events
-    events: Events,
+    }
+
     // to keep old versions of firefox happy
     DOMMouseScroll(evt) {
       this.fire(MouseWheelEvent, evt);
-    },
-    mousemove: move(MouseMoveEvent, MouseOverEvent, MouseOutEvent),
-    dragover: move(DragOverEvent, DragEnterEvent, DragLeaveEvent),
-    mouseout: inactive(MouseOutEvent),
-    dragleave: inactive(DragLeaveEvent),
+    }
+    pointerdown(evt) {
+      this._down = this._active;
+      this.fire(PointerDownEvent, evt);
+    }
     mousedown(evt) {
       this._down = this._active;
       this.fire(MouseDownEvent, evt);
-    },
+    }
     click(evt) {
       if (this._down === this._active) {
         this.fire(ClickEvent, evt);
         this._down = null;
       }
-    },
+    }
     touchstart(evt) {
       this._touch = this.pickEvent(evt.changedTouches[0]);
       if (this._first) {
@@ -12390,14 +12441,15 @@
         this._first = false;
       }
       this.fire(TouchStartEvent, evt, true);
-    },
+    }
     touchmove(evt) {
       this.fire(TouchMoveEvent, evt, true);
-    },
+    }
     touchend(evt) {
       this.fire(TouchEndEvent, evt, true);
       this._touch = null;
-    },
+    }
+
     // fire an event
     fire(type, evt, touch) {
       const a = touch ? this._touch : this._active,
@@ -12419,7 +12471,8 @@
           h[i].handler.call(this._obj, evt, a);
         }
       }
-    },
+    }
+
     // add an event handler
     on(type, handler) {
       const name = this.eventName(type),
@@ -12433,7 +12486,8 @@
         });
       }
       return this;
-    },
+    }
+
     // remove an event handler
     off(type, handler) {
       const name = this.eventName(type),
@@ -12443,29 +12497,71 @@
         h.splice(i, 1);
       }
       return this;
-    },
+    }
     pickEvent(evt) {
       const p = point(evt, this._canvas),
         o = this._origin;
       return this.pick(this._scene, p[0], p[1], p[0] - o[0], p[1] - o[1]);
-    },
-    // find the scenegraph item at the current mouse position
-    // x, y -- the absolute x, y mouse coordinates on the canvas element
+    }
+
+    // find the scenegraph item at the current pointer position
+    // x, y -- the absolute x, y pointer coordinates on the canvas element
     // gx, gy -- the relative coordinates within the current group
     pick(scene, x, y, gx, gy) {
       const g = this.context(),
         mark = Marks[scene.marktype];
       return mark.pick.call(this, g, scene, x, y, gx, gy);
     }
-  });
+  }
+  const eventBundle = type => type === TouchStartEvent || type === TouchMoveEvent || type === TouchEndEvent ? [TouchStartEvent, TouchMoveEvent, TouchEndEvent] : [type];
+
+  // lazily add listeners to the canvas as needed
+  function eventListenerCheck(handler, type) {
+    eventBundle(type).forEach(_ => addEventListener(handler, _));
+  }
+  function addEventListener(handler, type) {
+    const canvas = handler.canvas();
+    if (canvas && !handler._events[type]) {
+      handler._events[type] = 1;
+      canvas.addEventListener(type, handler[type] ? evt => handler[type](evt) : evt => handler.fire(type, evt));
+    }
+  }
+  function fireAll(handler, types, event) {
+    types.forEach(type => handler.fire(type, event));
+  }
+  function move(moveEvents, overEvents, outEvents) {
+    return function (evt) {
+      const a = this._active,
+        p = this.pickEvent(evt);
+      if (p === a) {
+        // active item and picked item are the same
+        fireAll(this, moveEvents, evt); // fire move
+      } else {
+        // active item and picked item are different
+        if (!a || !a.exit) {
+          // fire out for prior active item
+          // suppress if active item was removed from scene
+          fireAll(this, outEvents, evt);
+        }
+        this._active = p; // set new active item
+        fireAll(this, overEvents, evt); // fire over for new active item
+        fireAll(this, moveEvents, evt); // fire move for new active item
+      }
+    };
+  }
+  function inactive(types) {
+    return function (evt) {
+      fireAll(this, types, evt);
+      this._active = null;
+    };
+  }
   function devicePixelRatio() {
     return typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
   }
-  var pixelRatio = devicePixelRatio();
   function resize(canvas, width, height, origin, scaleFactor, opt) {
     const inDOM = typeof HTMLElement !== 'undefined' && canvas instanceof HTMLElement && canvas.parentNode != null,
       context = canvas.getContext('2d'),
-      ratio = inDOM ? pixelRatio : scaleFactor;
+      ratio = inDOM ? devicePixelRatio() : scaleFactor;
     canvas.width = width * ratio;
     canvas.height = height * ratio;
     for (const key in opt) {
@@ -12479,14 +12575,100 @@
     context.setTransform(ratio, 0, 0, ratio, ratio * origin[0], ratio * origin[1]);
     return canvas;
   }
-  function CanvasRenderer(loader) {
-    Renderer.call(this, loader);
-    this._options = {};
-    this._redraw = false;
-    this._dirty = new Bounds();
-    this._tempb = new Bounds();
+  class CanvasRenderer extends Renderer {
+    constructor(loader) {
+      super(loader);
+      this._options = {};
+      this._redraw = false;
+      this._dirty = new Bounds();
+      this._tempb = new Bounds();
+    }
+    initialize(el, width, height, origin, scaleFactor, options) {
+      this._options = options || {};
+      this._canvas = this._options.externalContext ? null : domCanvas(1, 1, this._options.type); // instantiate a small canvas
+
+      if (el && this._canvas) {
+        domClear(el, 0).appendChild(this._canvas);
+        this._canvas.setAttribute('class', 'marks');
+      }
+
+      // this method will invoke resize to size the canvas appropriately
+      return super.initialize(el, width, height, origin, scaleFactor);
+    }
+    resize(width, height, origin, scaleFactor) {
+      super.resize(width, height, origin, scaleFactor);
+      if (this._canvas) {
+        // configure canvas size and transform
+        resize(this._canvas, this._width, this._height, this._origin, this._scale, this._options.context);
+      } else {
+        // external context needs to be scaled and positioned to origin
+        const ctx = this._options.externalContext;
+        if (!ctx) error('CanvasRenderer is missing a valid canvas or context');
+        ctx.scale(this._scale, this._scale);
+        ctx.translate(this._origin[0], this._origin[1]);
+      }
+      this._redraw = true;
+      return this;
+    }
+    canvas() {
+      return this._canvas;
+    }
+    context() {
+      return this._options.externalContext || (this._canvas ? this._canvas.getContext('2d') : null);
+    }
+    dirty(item) {
+      const b = this._tempb.clear().union(item.bounds);
+      let g = item.mark.group;
+      while (g) {
+        b.translate(g.x || 0, g.y || 0);
+        g = g.mark.group;
+      }
+      this._dirty.union(b);
+    }
+    _render(scene, markTypes) {
+      const g = this.context(),
+        o = this._origin,
+        w = this._width,
+        h = this._height,
+        db = this._dirty,
+        vb = viewBounds(o, w, h);
+
+      // setup
+      g.save();
+      const b = this._redraw || db.empty() ? (this._redraw = false, vb.expand(1)) : clipToBounds(g, vb.intersect(db), o);
+      this.clear(-o[0], -o[1], w, h);
+
+      // render
+      this.draw(g, scene, b, markTypes);
+
+      // takedown
+      g.restore();
+      db.clear();
+      return this;
+    }
+    draw(ctx, scene, bounds, markTypes) {
+      if (scene.marktype !== 'group' && markTypes != null && !markTypes.includes(scene.marktype)) {
+        return;
+      }
+      const mark = Marks[scene.marktype];
+      if (scene.clip) clip$2(ctx, scene);
+      mark.draw.call(this, ctx, scene, bounds, markTypes);
+      if (scene.clip) ctx.restore();
+    }
+    clear(x, y, w, h) {
+      const opt = this._options,
+        g = this.context();
+      if (opt.type !== 'pdf' && !opt.externalContext) {
+        // calling clear rect voids vector output in pdf mode
+        // and could remove external context content (#2615)
+        g.clearRect(x, y, w, h);
+      }
+      if (this._bgcolor != null) {
+        g.fillStyle = this._bgcolor;
+        g.fillRect(x, y, w, h);
+      }
+    }
   }
-  const base$1 = Renderer.prototype;
   const viewBounds = (origin, width, height) => new Bounds().set(0, 0, width, height).translate(-origin[0], -origin[1]);
   function clipToBounds(g, b, origin) {
     // expand bounds by 1 pixel, then round to pixel boundaries
@@ -12506,109 +12688,17 @@
     g.clip();
     return b;
   }
-  inherits(CanvasRenderer, Renderer, {
-    initialize(el, width, height, origin, scaleFactor, options) {
-      this._options = options || {};
-      this._canvas = this._options.externalContext ? null : domCanvas(1, 1, this._options.type); // instantiate a small canvas
-
-      if (el && this._canvas) {
-        domClear(el, 0).appendChild(this._canvas);
-        this._canvas.setAttribute('class', 'marks');
-      }
-
-      // this method will invoke resize to size the canvas appropriately
-      return base$1.initialize.call(this, el, width, height, origin, scaleFactor);
-    },
-    resize(width, height, origin, scaleFactor) {
-      base$1.resize.call(this, width, height, origin, scaleFactor);
-      if (this._canvas) {
-        // configure canvas size and transform
-        resize(this._canvas, this._width, this._height, this._origin, this._scale, this._options.context);
-      } else {
-        // external context needs to be scaled and positioned to origin
-        const ctx = this._options.externalContext;
-        if (!ctx) error('CanvasRenderer is missing a valid canvas or context');
-        ctx.scale(this._scale, this._scale);
-        ctx.translate(this._origin[0], this._origin[1]);
-      }
-      this._redraw = true;
-      return this;
-    },
-    canvas() {
-      return this._canvas;
-    },
-    context() {
-      return this._options.externalContext || (this._canvas ? this._canvas.getContext('2d') : null);
-    },
-    dirty(item) {
-      const b = this._tempb.clear().union(item.bounds);
-      let g = item.mark.group;
-      while (g) {
-        b.translate(g.x || 0, g.y || 0);
-        g = g.mark.group;
-      }
-      this._dirty.union(b);
-    },
-    _render(scene) {
-      const g = this.context(),
-        o = this._origin,
-        w = this._width,
-        h = this._height,
-        db = this._dirty,
-        vb = viewBounds(o, w, h);
-
-      // setup
-      g.save();
-      const b = this._redraw || db.empty() ? (this._redraw = false, vb.expand(1)) : clipToBounds(g, vb.intersect(db), o);
-      this.clear(-o[0], -o[1], w, h);
-
-      // render
-      this.draw(g, scene, b);
-
-      // takedown
-      g.restore();
-      db.clear();
-      return this;
-    },
-    draw(ctx, scene, bounds) {
-      const mark = Marks[scene.marktype];
-      if (scene.clip) clip$2(ctx, scene);
-      mark.draw.call(this, ctx, scene, bounds);
-      if (scene.clip) ctx.restore();
-    },
-    clear(x, y, w, h) {
-      const opt = this._options,
-        g = this.context();
-      if (opt.type !== 'pdf' && !opt.externalContext) {
-        // calling clear rect voids vector output in pdf mode
-        // and could remove external context content (#2615)
-        g.clearRect(x, y, w, h);
-      }
-      if (this._bgcolor != null) {
-        g.fillStyle = this._bgcolor;
-        g.fillRect(x, y, w, h);
-      }
+  class SVGHandler extends Handler {
+    constructor(loader, tooltip) {
+      super(loader, tooltip);
+      const h = this;
+      h._hrefHandler = listener(h, (evt, item) => {
+        if (item && item.href) h.handleHref(evt, item, item.href);
+      });
+      h._tooltipHandler = listener(h, (evt, item) => {
+        h.handleTooltip(evt, item, evt.type !== TooltipHideEvent);
+      });
     }
-  });
-  function SVGHandler(loader, tooltip) {
-    Handler.call(this, loader, tooltip);
-    const h = this;
-    h._hrefHandler = listener(h, (evt, item) => {
-      if (item && item.href) h.handleHref(evt, item, item.href);
-    });
-    h._tooltipHandler = listener(h, (evt, item) => {
-      h.handleTooltip(evt, item, evt.type !== TooltipHideEvent);
-    });
-  }
-
-  // wrap an event listener for the SVG DOM
-  const listener = (context, handler) => evt => {
-    let item = evt.target.__data__;
-    item = Array.isArray(item) ? item[0] : item;
-    evt.vegaType = evt.type;
-    handler.call(context._obj, evt, item);
-  };
-  inherits(SVGHandler, Handler, {
     initialize(el, origin, obj) {
       let svg = this._svg;
       if (svg) {
@@ -12622,11 +12712,12 @@
         svg.addEventListener(TooltipShowEvent, this._tooltipHandler);
         svg.addEventListener(TooltipHideEvent, this._tooltipHandler);
       }
-      return Handler.prototype.initialize.call(this, el, origin, obj);
-    },
+      return super.initialize(el, origin, obj);
+    }
     canvas() {
       return this._svg;
-    },
+    }
+
     // add an event handler
     on(type, handler) {
       const name = this.eventName(type),
@@ -12644,7 +12735,8 @@
         }
       }
       return this;
-    },
+    }
+
     // remove an event handler
     off(type, handler) {
       const name = this.eventName(type),
@@ -12658,7 +12750,15 @@
       }
       return this;
     }
-  });
+  }
+
+  // wrap an event listener for the SVG DOM
+  const listener = (context, handler) => evt => {
+    let item = evt.target.__data__;
+    item = Array.isArray(item) ? item[0] : item;
+    evt.vegaType = evt.type;
+    handler.call(context._obj, evt, item);
+  };
   const ARIA_HIDDEN = 'aria-hidden';
   const ARIA_LABEL = 'aria-label';
   const ARIA_ROLE = 'role';
@@ -12864,16 +12964,16 @@
   const RootIndex = 0,
     xmlns = 'http://www.w3.org/2000/xmlns/',
     svgns = metadata.xmlns;
-  function SVGRenderer(loader) {
-    Renderer.call(this, loader);
-    this._dirtyID = 0;
-    this._dirty = [];
-    this._svg = null;
-    this._root = null;
-    this._defs = null;
-  }
-  const base = Renderer.prototype;
-  inherits(SVGRenderer, Renderer, {
+  class SVGRenderer extends Renderer {
+    constructor(loader) {
+      super(loader);
+      this._dirtyID = 0;
+      this._dirty = [];
+      this._svg = null;
+      this._root = null;
+      this._defs = null;
+    }
+
     /**
      * Initialize a new SVGRenderer instance.
      * @param {DOMElement} el - The containing DOM element for the display.
@@ -12907,8 +13007,9 @@
 
       // set background color if defined
       this.background(this._bgcolor);
-      return base.initialize.call(this, el, width, height, origin, scaleFactor);
-    },
+      return super.initialize(el, width, height, origin, scaleFactor);
+    }
+
     /**
      * Get / set the background color.
      */
@@ -12916,8 +13017,9 @@
       if (arguments.length && this._svg) {
         this._svg.style.setProperty('background-color', bgcolor);
       }
-      return base.background.apply(this, arguments);
-    },
+      return super.background(...arguments);
+    }
+
     /**
      * Resize the display.
      * @param {number} width - The new coordinate width of the display, in pixels.
@@ -12929,7 +13031,7 @@
      * @return {SVGRenderer} - This renderer instance;
      */
     resize(width, height, origin, scaleFactor) {
-      base.resize.call(this, width, height, origin, scaleFactor);
+      super.resize(width, height, origin, scaleFactor);
       if (this._svg) {
         setAttributes(this._svg, {
           width: this._width * this._scale,
@@ -12940,14 +13042,16 @@
       }
       this._dirty = [];
       return this;
-    },
+    }
+
     /**
      * Returns the SVG element of the visualization.
      * @return {DOMElement} - The SVG element.
      */
     canvas() {
       return this._svg;
-    },
+    }
+
     /**
      * Returns an SVG text string for the rendered content,
      * or null if this renderer is currently headless.
@@ -12972,23 +13076,27 @@
         this._svg.style.setProperty('background-color', bg);
       }
       return text;
-    },
+    }
+
     /**
      * Internal rendering method.
      * @param {object} scene - The root mark of a scenegraph to render.
+     * @param {Array} markTypes - Array of the mark types to render.
+     *                            If undefined, render all mark types
      */
-    _render(scene) {
+    _render(scene, markTypes) {
       // perform spot updates and re-render markup
       if (this._dirtyCheck()) {
         if (this._dirtyAll) this._clearDefs();
-        this.mark(this._root, scene);
+        this.mark(this._root, scene, undefined, markTypes);
         domClear(this._root, 1);
       }
       this.defs();
       this._dirty = [];
       ++this._dirtyID;
       return this;
-    },
+    }
+
     // -- Manage rendering of items marked as dirty --
 
     /**
@@ -13000,14 +13108,16 @@
         item.dirty = this._dirtyID;
         this._dirty.push(item);
       }
-    },
+    }
+
     /**
      * Check if a mark item is considered dirty.
      * @param {Item} item - The mark item.
      */
     isDirty(item) {
       return this._dirtyAll || !item._svg || !item._svg.ownerSVGElement || item.dirty === this._dirtyID;
-    },
+    }
+
     /**
      * Internal method to check dirty status and, if possible,
      * make targetted updates without a full rendering pass.
@@ -13063,7 +13173,8 @@
         item._update = id;
       }
       return !this._dirtyAll;
-    },
+    }
+
     // -- Construct & maintain scenegraph to SVG mapping ---
 
     /**
@@ -13071,16 +13182,23 @@
      * @param {SVGElement} el - The parent element in the SVG tree.
      * @param {object} scene - The mark parent to render.
      * @param {SVGElement} prev - The previous sibling in the SVG tree.
+     * @param {Array} markTypes - Array of the mark types to render.
+     *                            If undefined, render all mark types
      */
-    mark(el, scene, prev) {
+    mark(el, scene, prev, markTypes) {
       if (!this.isDirty(scene)) {
         return scene._svg;
       }
       const svg = this._svg,
-        mdef = Marks[scene.marktype],
+        markType = scene.marktype,
+        mdef = Marks[markType],
         events = scene.interactive === false ? 'none' : null,
         isGroup = mdef.tag === 'g';
       const parent = bind$1(scene, el, prev, 'g', svg);
+      if (markType !== 'group' && markTypes != null && !markTypes.includes(markType)) {
+        domClear(parent, 0);
+        return scene._svg;
+      }
       parent.setAttribute('class', cssClass(scene));
 
       // apply aria attributes to parent container element
@@ -13097,7 +13215,7 @@
           node = bind$1(item, parent, sibling, mdef.tag, svg);
         if (dirty) {
           this._update(mdef, node, item);
-          if (isGroup) recurse(this, node, item);
+          if (isGroup) recurse(this, node, item, markTypes);
         }
         sibling = node;
         ++i;
@@ -13109,7 +13227,8 @@
       }
       domClear(parent, i);
       return parent;
-    },
+    }
+
     /**
      * Update the attributes of an SVG element for a mark item.
      * @param {object} mdef - The mark definition object
@@ -13135,7 +13254,8 @@
       // apply svg style attributes
       // note: element state may have been modified by 'extra' method
       if (element$1) this.style(element$1, item);
-    },
+    }
+
     /**
      * Update the presentation attributes of an SVG element for a mark item.
      * @param {SVGElement} el - The SVG element.
@@ -13160,7 +13280,8 @@
       for (const prop in stylesCss) {
         setStyle(el, stylesCss[prop], item[prop]);
       }
-    },
+    }
+
     /**
      * Render SVG defs, as needed.
      * Must be called *after* marks have been processed to ensure the
@@ -13184,7 +13305,8 @@
       if (el) {
         index === 0 ? (svg.removeChild(el), defs.el = null) : domClear(el, index);
       }
-    },
+    }
+
     /**
      * Clear defs caches.
      */
@@ -13193,7 +13315,7 @@
       def.gradient = {};
       def.clipping = {};
     }
-  });
+  }
 
   // mark ancestor chain with a dirty id
   function dirtyParents(item, id) {
@@ -13278,14 +13400,14 @@
   }
 
   // Recursively process group contents.
-  function recurse(renderer, el, group) {
+  function recurse(renderer, el, group, markTypes) {
     // child 'g' element is second to last among children (path, g, path)
     // other children here are foreground and background path elements
     el = el.lastChild.previousSibling;
     let prev,
       idx = 0;
     visit(group, item => {
-      prev = renderer.mark(el, item, prev);
+      prev = renderer.mark(el, item, prev, markTypes);
       ++idx;
     });
 
@@ -13482,22 +13604,24 @@
     let loc;
     return typeof window === 'undefined' ? '' : (loc = window.location).hash ? loc.href.slice(0, -loc.hash.length) : loc.href;
   }
-  function SVGStringRenderer(loader) {
-    Renderer.call(this, loader);
-    this._text = null;
-    this._defs = {
-      gradient: {},
-      clipping: {}
-    };
-  }
-  inherits(SVGStringRenderer, Renderer, {
+  class SVGStringRenderer extends Renderer {
+    constructor(loader) {
+      super(loader);
+      this._text = null;
+      this._defs = {
+        gradient: {},
+        clipping: {}
+      };
+    }
+
     /**
      * Returns the rendered SVG text string,
      * or null if rendering has not yet occurred.
      */
     svg() {
       return this._text;
-    },
+    }
+
     /**
      * Internal rendering method.
      * @param {object} scene - The root mark of a scenegraph to render.
@@ -13536,7 +13660,8 @@
       // get SVG text string
       this._text = m.close() + '';
       return this;
-    },
+    }
+
     /**
      * Render a set of mark items.
      * @param {object} m - The markup context.
@@ -13600,7 +13725,6 @@
         m.close(); // </tag>
         if (href) m.close(); // </a>
       };
-
       if (mdef.nested) {
         if (scene.items && scene.items.length) process(scene.items[0]);
       } else {
@@ -13609,7 +13733,7 @@
 
       // render closing group tag
       return m.close(); // </g>
-    },
+    }
 
     /**
      * Get href attributes for a hyperlinked mark item.
@@ -13631,7 +13755,8 @@
         }
       }
       return null;
-    },
+    }
+
     /**
      * Get an object of SVG attributes for a mark item.
      * @param {object} scene - The mark parent.
@@ -13657,7 +13782,8 @@
         style(object, item, scene, tag, this._defs);
       }
       return object;
-    },
+    }
+
     /**
      * Render SVG defs, as needed.
      * Must be called *after* marks have been processed to ensure the
@@ -13741,7 +13867,7 @@
       }
       m.close();
     }
-  });
+  }
 
   // Helper function for attr for style presentation attributes
   function style(s, item, scene, tag, defs) {
@@ -13789,7 +13915,142 @@
     }
     return s;
   }
+
+  /**
+   * @typedef {Object} HybridRendererOptions
+   *
+   * @property {string[]} [svgMarkTypes=['text']] - An array of SVG mark types to render
+   *                                                in the SVG layer. All other mark types
+   *                                                will be rendered in the Canvas layer.
+   * @property {boolean} [svgOnTop=true] - Flag to determine if SVG should be rendered on top.
+   * @property {boolean} [debug=false] - Flag to enable or disable debugging mode. When true,
+   *                                     the top layer will be stacked below the bottom layer
+   *                                     rather than overlaid on top.
+   */
+
+  /** @type {HybridRendererOptions} */
+  const OPTS = {
+    svgMarkTypes: ['text'],
+    svgOnTop: true,
+    debug: false
+  };
+
+  /**
+   * Configure the HybridRenderer
+   *
+   * @param {HybridRendererOptions} options - HybridRenderer configuration options.
+   */
+  function setHybridRendererOptions(options) {
+    OPTS['svgMarkTypes'] = options.svgMarkTypes ?? ['text'];
+    OPTS['svgOnTop'] = options.svgOnTop ?? true;
+    OPTS['debug'] = options.debug ?? false;
+  }
+  class HybridRenderer extends Renderer {
+    constructor(loader) {
+      super(loader);
+      this._svgRenderer = new SVGRenderer(loader);
+      this._canvasRenderer = new CanvasRenderer(loader);
+    }
+
+    /**
+     * Initialize a new HybridRenderer instance.
+     * @param {DOMElement} el - The containing DOM element for the display.
+     * @param {number} width - The coordinate width of the display, in pixels.
+     * @param {number} height - The coordinate height of the display, in pixels.
+     * @param {Array<number>} origin - The origin of the display, in pixels.
+     *   The coordinate system will be translated to this point.
+     * @param {number} [scaleFactor=1] - Optional scaleFactor by which to multiply
+     *   the width and height to determine the final pixel size.
+     * @return {HybridRenderer} - This renderer instance.
+     */
+    initialize(el, width, height, origin, scaleFactor) {
+      this._root_el = domChild(el, 0, 'div');
+      const bottomEl = domChild(this._root_el, 0, 'div');
+      const topEl = domChild(this._root_el, 1, 'div');
+      this._root_el.style.position = 'relative';
+
+      // Set position absolute to overlay svg on top of canvas
+      if (!OPTS.debug) {
+        bottomEl.style.height = '100%';
+        topEl.style.position = 'absolute';
+        topEl.style.top = '0';
+        topEl.style.left = '0';
+        topEl.style.height = '100%';
+        topEl.style.width = '100%';
+      }
+      this._svgEl = OPTS.svgOnTop ? topEl : bottomEl;
+      this._canvasEl = OPTS.svgOnTop ? bottomEl : topEl;
+
+      // pointer-events to none on SVG layer so that canvas gets all events
+      this._svgEl.style.pointerEvents = 'none';
+      this._canvasRenderer.initialize(this._canvasEl, width, height, origin, scaleFactor);
+      this._svgRenderer.initialize(this._svgEl, width, height, origin, scaleFactor);
+      return super.initialize(el, width, height, origin, scaleFactor);
+    }
+
+    /**
+     * Flag a mark item as dirty.
+     * @param {Item} item - The mark item.
+     */
+    dirty(item) {
+      if (OPTS.svgMarkTypes.includes(item.mark.marktype)) {
+        this._svgRenderer.dirty(item);
+      } else {
+        this._canvasRenderer.dirty(item);
+      }
+      return this;
+    }
+
+    /**
+     * Internal rendering method.
+     * @param {object} scene - The root mark of a scenegraph to render.
+     * @param {Array} markTypes - Array of the mark types to render.
+     *                            If undefined, render all mark types
+     */
+    _render(scene, markTypes) {
+      const allMarkTypes = markTypes ?? ['arc', 'area', 'image', 'line', 'path', 'rect', 'rule', 'shape', 'symbol', 'text', 'trail'];
+      const canvasMarkTypes = allMarkTypes.filter(m => !OPTS.svgMarkTypes.includes(m));
+      this._svgRenderer.render(scene, OPTS.svgMarkTypes);
+      this._canvasRenderer.render(scene, canvasMarkTypes);
+    }
+
+    /**
+     * Resize the display.
+     * @param {number} width - The new coordinate width of the display, in pixels.
+     * @param {number} height - The new coordinate height of the display, in pixels.
+     * @param {Array<number>} origin - The new origin of the display, in pixels.
+     *   The coordinate system will be translated to this point.
+     * @param {number} [scaleFactor=1] - Optional scaleFactor by which to multiply
+     *   the width and height to determine the final pixel size.
+     * @return {SVGRenderer} - This renderer instance;
+     */
+    resize(width, height, origin, scaleFactor) {
+      super.resize(width, height, origin, scaleFactor);
+      this._svgRenderer.resize(width, height, origin, scaleFactor);
+      this._canvasRenderer.resize(width, height, origin, scaleFactor);
+      return this;
+    }
+    background(bgcolor) {
+      // Propagate background color to lower canvas renderer
+      if (OPTS.svgOnTop) {
+        this._canvasRenderer.background(bgcolor);
+      } else {
+        this._svgRenderer.background(bgcolor);
+      }
+      return this;
+    }
+  }
+  class HybridHandler extends CanvasHandler {
+    constructor(loader, tooltip) {
+      super(loader, tooltip);
+    }
+    initialize(el, origin, obj) {
+      const canvas = domChild(domChild(el, 0, 'div'), OPTS.svgOnTop ? 0 : 1, 'div');
+      return super.initialize(canvas, origin, obj);
+    }
+  }
   const Canvas = 'canvas';
+  const Hybrid = 'hybrid';
   const PNG = 'png';
   const SVG = 'svg';
   const None$1 = 'none';
@@ -13797,6 +14058,7 @@
     Canvas: Canvas,
     PNG: PNG,
     SVG: SVG,
+    Hybrid: Hybrid,
     None: None$1
   };
   const modules = {};
@@ -13809,6 +14071,11 @@
     renderer: SVGRenderer,
     headless: SVGStringRenderer,
     handler: SVGHandler
+  };
+  modules[Hybrid] = {
+    renderer: HybridRenderer,
+    headless: HybridRenderer,
+    handler: HybridHandler
   };
   modules[None$1] = {};
   function renderModule(name, _) {
@@ -14266,7 +14533,6 @@
     index + +datum.domain // title index
     ];
   }
-
   function axisLayout(view, axis, width, height) {
     var item = axis.items[0],
       datum = item.datum,
@@ -15771,7 +16037,6 @@
     Transform.call(this, null, params);
     this.modified(true); // always treat as modified
   }
-
   inherits(Scale$1, Transform, {
     transform(_, pulse) {
       var df = pulse.dataflow,
@@ -15818,11 +16083,6 @@
       mid;
     if (!domain) return 0;
 
-    // adjust continuous domain for minimum pixel padding
-    if (includePad(type) && _.padding && domain[0] !== peek$1(domain)) {
-      domain = padDomain(type, domain, _.range, _.padding, _.exponent, _.constant);
-    }
-
     // adjust domain based on zero, min, max settings
     if (zero || _.domainMin != null || _.domainMax != null || _.domainMid != null) {
       n = (domain = domain.slice()).length - 1 || 1;
@@ -15838,6 +16098,11 @@
         if (i !== n) df.warn('Scale domainMid exceeds domain min or max.', mid);
         domain.splice(i, 0, mid);
       }
+    }
+
+    // adjust continuous domain for minimum pixel padding
+    if (includePad(type) && _.padding && domain[0] !== peek$1(domain)) {
+      domain = padDomain(type, domain, _.range, _.padding, _.exponent, _.constant);
     }
 
     // set the scale domain
@@ -16319,8 +16584,8 @@
     // Marching squares with isolines stitched into rings.
     // Based on https://github.com/topojson/topojson-client/blob/v3.0.0/src/stitch.js
     function isorings(values, value, callback) {
-      var fragmentByStart = new Array(),
-        fragmentByEnd = new Array(),
+      var fragmentByStart = [],
+        fragmentByEnd = [],
         x,
         y,
         t0,
@@ -17542,7 +17807,6 @@
     Transform.call(this, null, params);
     this.modified(true); // always treat as modified
   }
-
   inherits(Projection$1, Transform, {
     transform(_, pulse) {
       let proj = this.value;
@@ -17783,7 +18047,6 @@
           change = true;
           sim.tick(); // ensure we run on init
         }
-
         pulse.modifies('index');
       } else {
         if (change) {
@@ -17805,7 +18068,6 @@
           if (!change) return pulse.StopPropagation; // defer to sim ticks
         }
       }
-
       return this.finish(_, pulse);
     },
     finish(_, pulse) {
@@ -17860,7 +18122,6 @@
     for (n = sim.numForces || 0; i < n; ++i) {
       sim.force(Forces + i, null); // remove
     }
-
     sim.numForces = f.length;
     return sim;
   }
@@ -18500,7 +18761,6 @@
         }
       }
     }
-
     return [layer1, layer2];
   }
   function getBuffer(context, width, height) {
@@ -19608,7 +19868,7 @@
       // map polygons to paths
       for (let i = 0, n = data.length; i < n; ++i) {
         const polygon = voronoi.cellPolygon(i);
-        data[i][as] = polygon ? toPathString(polygon) : null;
+        data[i][as] = polygon && !isPoint(polygon) ? toPathString(polygon) : null;
       }
       return pulse.reflow(_.modified()).modifies(as);
     }
@@ -19621,6 +19881,9 @@
     let n = p.length - 1;
     for (; p[n][0] === x && p[n][1] === y; --n);
     return 'M' + p.slice(0, n + 1).join('L') + 'Z';
+  }
+  function isPoint(p) {
+    return p.length === 2 && p[0][0] === p[1][0] && p[0][1] === p[1][1];
   }
 
   var voronoi = /*#__PURE__*/Object.freeze({
@@ -20213,7 +20476,6 @@
           }
           curr[i] = 0; // clear unused bits
         }
-
         data = copy;
         return reindex;
       },
@@ -20293,7 +20555,7 @@
         addv[i] = key(data[i]);
         addi[i] = i;
       }
-      addv = sort(addv, addi);
+      addv = sort$1(addv, addi);
       if (n0) {
         oldv = value;
         oldi = index;
@@ -20355,7 +20617,7 @@
       size: () => size
     };
   }
-  function sort(values, index) {
+  function sort$1(values, index) {
     values.sort.call(index, (a, b) => {
       const x = values[a],
         y = values[b];
@@ -20648,7 +20910,6 @@
           output.rem = output.add; // duplicate add/rem for downstream resolve
         }
       }
-
       return mask;
     },
     incrementAll(dim, query, stamp, out) {
@@ -20837,7 +21098,7 @@
     resolvefilter: ResolveFilter
   });
 
-  var version = "5.25.0";
+  var version = "5.31.0";
 
   const RawCode = 'RawCode';
   const Literal = 'Literal';
@@ -20988,18 +21249,17 @@
   function isDecimalDigit(ch) {
     return ch >= 0x30 && ch <= 0x39; // 0..9
   }
-
   function isHexDigit(ch) {
-    return '0123456789abcdefABCDEF'.indexOf(ch) >= 0;
+    return '0123456789abcdefABCDEF'.includes(ch);
   }
   function isOctalDigit(ch) {
-    return '01234567'.indexOf(ch) >= 0;
+    return '01234567'.includes(ch);
   }
 
   // 7.2 White Space
 
   function isWhiteSpace(ch) {
-    return ch === 0x20 || ch === 0x09 || ch === 0x0B || ch === 0x0C || ch === 0xA0 || ch >= 0x1680 && [0x1680, 0x180E, 0x2000, 0x2001, 0x2002, 0x2003, 0x2004, 0x2005, 0x2006, 0x2007, 0x2008, 0x2009, 0x200A, 0x202F, 0x205F, 0x3000, 0xFEFF].indexOf(ch) >= 0;
+    return ch === 0x20 || ch === 0x09 || ch === 0x0B || ch === 0x0C || ch === 0xA0 || ch >= 0x1680 && [0x1680, 0x180E, 0x2000, 0x2001, 0x2002, 0x2003, 0x2004, 0x2005, 0x2006, 0x2007, 0x2008, 0x2009, 0x200A, 0x202F, 0x205F, 0x3000, 0xFEFF].includes(ch);
   }
 
   // 7.3 Line Terminators
@@ -21326,7 +21586,7 @@
 
     // Other 2-character punctuators: ++ -- << >> && ||
     ch2 = ch3.substr(0, 2);
-    if (ch1 === ch2[1] && '+-<>&|'.indexOf(ch1) >= 0 || ch2 === '=>') {
+    if (ch1 === ch2[1] && '+-<>&|'.includes(ch1) || ch2 === '=>') {
       index += 2;
       return {
         type: TokenPunctuator,
@@ -21341,7 +21601,7 @@
 
     // 1-character punctuators: < > = ! + - * % & | ^ /
 
-    if ('<>=!+-*%&|^/'.indexOf(ch1) >= 0) {
+    if ('<>=!+-*%&|^/'.includes(ch1)) {
       ++index;
       return {
         type: TokenPunctuator,
@@ -21521,7 +21781,7 @@
 
                   // 3 digits are only allowed when string starts
                   // with 0, 1, 2, 3
-                  if ('0123'.indexOf(ch) >= 0 && index < length && isOctalDigit(source[index])) {
+                  if ('0123'.includes(ch) && index < length && isOctalDigit(source[index])) {
                     code = code * 8 + '01234567'.indexOf(source[index++]);
                   }
                 }
@@ -21555,7 +21815,7 @@
   }
   function testRegExp(pattern, flags) {
     let tmp = pattern;
-    if (flags.indexOf('u') >= 0) {
+    if (flags.includes('u')) {
       // Replace each astral symbol and every Unicode code point
       // escape sequence with a single ASCII symbol to avoid throwing on
       // regular expressions that are only valid in combination with the
@@ -22213,7 +22473,6 @@
     if (match(',')) {
       throw new Error(DISABLED); // no sequence expressions
     }
-
     return expr;
   }
   function parser$1(code) {
@@ -22418,6 +22677,15 @@
     return codegen;
   }
 
+  // Registers vega-util field accessors to protect against XSS attacks
+  const SELECTION_GETTER = Symbol('vega_selection_getter');
+  function getter(f) {
+    if (!f.getter || !f.getter[SELECTION_GETTER]) {
+      f.getter = field$1(f.field);
+      f.getter[SELECTION_GETTER] = true;
+    }
+    return f.getter;
+  }
   const Intersect = 'intersect';
   const Union = 'union';
   const VlMulti = 'vlMulti';
@@ -22431,6 +22699,12 @@
     TYPE_RANGE_EXC = 'R-E',
     TYPE_RANGE_LE = 'R-LE',
     TYPE_RANGE_RE = 'R-RE',
+    TYPE_PRED_LT = 'E-LT',
+    TYPE_PRED_LTE = 'E-LTE',
+    TYPE_PRED_GT = 'E-GT',
+    TYPE_PRED_GTE = 'E-GTE',
+    TYPE_PRED_VALID = 'E-VALID',
+    TYPE_PRED_ONE_OF = 'E-ONE',
     UNIT_INDEX = 'index:unit';
 
   // TODO: revisit date coercion?
@@ -22443,15 +22717,14 @@
       f;
     for (; i < n; ++i) {
       f = fields[i];
-      f.getter = field$1.getter || field$1(f.field);
-      dval = f.getter(datum);
+      dval = getter(f)(datum);
       if (isDate$1(dval)) dval = toNumber(dval);
       if (isDate$1(values[i])) values[i] = toNumber(values[i]);
-      if (isDate$1(values[i][0])) values[i] = values[i].map(toNumber);
+      if (isArray(values[i]) && isDate$1(values[i][0])) values[i] = values[i].map(toNumber);
       if (f.type === TYPE_ENUM) {
         // Enumerated fields can either specify individual values (single/multi selections)
         // or an array of values (interval selections).
-        if (isArray(values[i]) ? values[i].indexOf(dval) < 0 : dval !== values[i]) {
+        if (isArray(values[i]) ? !values[i].includes(dval) : dval !== values[i]) {
           return false;
         }
       } else {
@@ -22465,6 +22738,18 @@
           if (!inrange(dval, values[i], false, false)) return false;
         } else if (f.type === TYPE_RANGE_LE) {
           if (!inrange(dval, values[i], false, true)) return false;
+        } else if (f.type === TYPE_PRED_LT) {
+          if (dval >= values[i]) return false;
+        } else if (f.type === TYPE_PRED_LTE) {
+          if (dval > values[i]) return false;
+        } else if (f.type === TYPE_PRED_GT) {
+          if (dval <= values[i]) return false;
+        } else if (f.type === TYPE_PRED_GTE) {
+          if (dval < values[i]) return false;
+        } else if (f.type === TYPE_PRED_VALID) {
+          if (dval === null || isNaN(dval)) return false;
+        } else if (f.type === TYPE_PRED_ONE_OF) {
+          if (values[i].indexOf(dval) === -1) return false;
         }
       }
     }
@@ -22555,7 +22840,7 @@
    */
   function selectionTuples(array, base) {
     return array.map(x => extend(base.fields ? {
-      values: base.fields.map(f => (f.getter || (f.getter = field$1(f.field)))(x.datum))
+      values: base.fields.map(f => getter(f)(x.datum))
     } : {
       [SelectionId]: $selectionId(x.datum)
     }, base));
@@ -22667,11 +22952,11 @@
       if (!base.length) return value;
       var i = 0,
         n = value.length;
-      for (; i < n; ++i) if (base.indexOf(value[i]) < 0) base.push(value[i]);
+      for (; i < n; ++i) if (!base.includes(value[i])) base.push(value[i]);
       return base;
     },
     E_intersect: function (base, value) {
-      return !base.length ? value : base.filter(v => value.indexOf(v) >= 0);
+      return !base.length ? value : base.filter(v => value.includes(v));
     },
     R_union: function (base, value) {
       var lo = toNumber(value[0]),
@@ -22749,7 +23034,7 @@
   }
   const wrap = method => function (value, spec) {
     const locale = this.context.dataflow.locale();
-    return locale[method](spec)(value);
+    return value === null ? 'null' : locale[method](spec)(value);
   };
   const format = wrap('format');
   const timeFormat = wrap('timeFormat');
@@ -22825,12 +23110,13 @@
       }
     }
   }
-  function getScale(nameOrFunction, ctx) {
-    if (isFunction(nameOrFunction)) {
-      return nameOrFunction;
-    }
-    if (isString(nameOrFunction)) {
-      const maybeScale = ctx.scales[nameOrFunction];
+
+  /**
+   * Name must be a string. Return undefined if the scale is not registered.
+   */
+  function getScale(name, ctx) {
+    if (isString(name)) {
+      const maybeScale = ctx.scales[name];
       return maybeScale && isRegisteredScale(maybeScale.value) ? maybeScale.value : undefined;
     }
     return undefined;
@@ -22870,6 +23156,10 @@
   const geoArea = geoMethod('area', d3Geo.geoArea);
   const geoBounds = geoMethod('bounds', d3Geo.geoBounds);
   const geoCentroid = geoMethod('centroid', d3Geo.geoCentroid);
+  function geoScale(projection, group) {
+    const p = getScale(projection, (group || this).context);
+    return p && p.scale();
+  }
   function inScope(item) {
     const group = this.context.group;
     let value = false;
@@ -23043,6 +23333,9 @@
   function reverse(seq) {
     return array(seq).slice().reverse();
   }
+  function sort(seq) {
+    return array(seq).slice().sort(ascending$1);
+  }
   function bandspace(count, paddingInner, paddingOuter) {
     return bandSpace(count || 0, paddingInner || 0, paddingOuter || 0);
   }
@@ -23070,8 +23363,13 @@
     const s = getScale(name, (group || this).context);
     return s ? s(value) : undefined;
   }
-  function scaleGradient(scale, p0, p1, count, group) {
-    scale = getScale(scale, (group || this).context);
+
+  /**
+   * Passing a function is only used for for testing.
+   * Outside of tests, the first argument should be a string.
+   */
+  function scaleGradient(scaleOrFunction, p0, p1, count, group) {
+    let scale = typeof scaleOrFunction === 'string' ? getScale(scaleOrFunction, (group || this).context) : scaleOrFunction;
     const gradient = Gradient$1(p0, p1);
     let stops = scale.domain(),
       min = stops[0],
@@ -23283,6 +23581,7 @@
     lastindexof,
     replace,
     reverse,
+    sort,
     slice,
     flush,
     lerp,
@@ -23399,7 +23698,7 @@
 
     // if the code generator has already been initialized,
     // we need to also register the function with it
-    if (codeGenerator) codeGenerator.functions[name] = thisPrefix + name;
+    codeGenerator.functions[name] = thisPrefix + name;
     return this;
   }
 
@@ -23415,6 +23714,7 @@
   expressionFunction('geoBounds', geoBounds, scaleVisitor);
   expressionFunction('geoCentroid', geoCentroid, scaleVisitor);
   expressionFunction('geoShape', geoShape, scaleVisitor);
+  expressionFunction('geoScale', geoScale, scaleVisitor);
   expressionFunction('indata', indata, indataVisitor);
   expressionFunction('data', data$1, dataVisitor);
   expressionFunction('treePath', treePath, dataVisitor);
@@ -24079,8 +24379,8 @@
       item: null
     }));
 
-    // evaluate cursor on each mousemove event
-    view.on(view.events('view', 'mousemove'), cursor, (_, event) => {
+    // evaluate cursor on each pointermove event
+    view.on(view.events('view', 'pointermove'), cursor, (_, event) => {
       const value = cursor.value,
         user = value ? isString(value) ? value : value.user : Default,
         item = event.item && event.item.cursor || null;
@@ -24352,11 +24652,11 @@
     hoverSet = [hoverSet || 'hover'];
     leaveSet = [leaveSet || 'update', hoverSet[0]];
 
-    // invoke hover set upon mouseover
-    this.on(this.events('view', 'mouseover', itemFilter), markTarget, invoke(hoverSet));
+    // invoke hover set upon pointerover
+    this.on(this.events('view', 'pointerover', itemFilter), markTarget, invoke(hoverSet));
 
-    // invoke leave set upon mouseout
-    this.on(this.events('view', 'mouseout', itemFilter), markTarget, invoke(leaveSet));
+    // invoke leave set upon pointerout
+    this.on(this.events('view', 'pointerout', itemFilter), markTarget, invoke(leaveSet));
     return this;
   }
 
@@ -24369,10 +24669,13 @@
   function finalize() {
     var tooltip = this._tooltip,
       timers = this._timers,
+      handlers = this._handler.handlers(),
       listeners = this._eventListeners,
       n,
       m,
-      e;
+      e,
+      h,
+      t;
     n = timers.length;
     while (--n >= 0) {
       timers[n].stop();
@@ -24387,6 +24690,14 @@
     }
     if (tooltip) {
       tooltip.call(this, this._handler, null, null, null);
+    }
+
+    // turn off all registered handlers
+    n = handlers.length;
+    while (--n >= 0) {
+      t = handlers[n].type;
+      h = handlers[n].handler;
+      this._handler.off(t, h);
     }
     return this;
   }
@@ -24927,7 +25238,7 @@
     });
   }
   function dataTest(name, data) {
-    return data.modified && isArray(data.input.value) && name.indexOf('_:vega:_');
+    return data.modified && isArray(data.input.value) && !name.startsWith('_:vega:_');
   }
   function signalTest(name, op) {
     return !(name === 'parent' || op instanceof transforms.proxy);
@@ -24975,6 +25286,27 @@
   }
   function formatValue(value) {
     return isArray(value) ? '[\u2026]' : isObject(value) && !isDate$1(value) ? '{\u2026}' : value;
+  }
+  function watchPixelRatio() {
+    // based on https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio#monitoring_screen_resolution_or_zoom_level_changes
+    if (this.renderer() === 'canvas' && this._renderer._canvas) {
+      let remove = null;
+      const updatePixelRatio = () => {
+        if (remove != null) {
+          remove();
+        }
+        const media = matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+        media.addEventListener('change', updatePixelRatio);
+        remove = () => {
+          media.removeEventListener('change', updatePixelRatio);
+        };
+        this._renderer._canvas.getContext('2d').pixelRatio = window.devicePixelRatio || 1;
+        this._redraw = true;
+        this._resize = 1;
+        this.resize().runAsync();
+      };
+      updatePixelRatio();
+    }
   }
 
   /**
@@ -25056,6 +25388,7 @@
 
     // initialize DOM container(s) and renderer
     if (options.container) view.initialize(options.container, options.bind);
+    if (options.watchPixelRatio) view._watchPixelRatio();
   }
   function lookupSignal(view, name) {
     return has$1(view._signals, name) ? view._signals[name] : error('Unrecognized signal name: ' + $(name));
@@ -25217,7 +25550,7 @@
     },
     addResizeListener(handler) {
       const l = this._resizeListeners;
-      if (l.indexOf(handler) < 0) {
+      if (!l.includes(handler)) {
         // add handler if it isn't already registered
         // note: error trapping handled elsewhere, so
         // no need to wrap handlers here
@@ -25252,7 +25585,6 @@
           this._globalCursor = !!_;
           if (prev) setCursor(this, prev); // swap cursor
         }
-
         return this;
       } else {
         return this._globalCursor;
@@ -25285,7 +25617,9 @@
     toSVG: renderToSVG,
     // -- SAVE / RESTORE STATE ----
     getState,
-    setState
+    setState,
+    // RE-RENDER ON ZOOM
+    _watchPixelRatio: watchPixelRatio
   });
 
   const VIEW = 'view',
@@ -25333,7 +25667,7 @@
       c;
     for (; i < n; ++i) {
       c = s[i];
-      if (!count && c === endChar) return i;else if (popChar && popChar.indexOf(c) >= 0) --count;else if (pushChar && pushChar.indexOf(c) >= 0) ++count;
+      if (!count && c === endChar) return i;else if (popChar && popChar.includes(c)) --count;else if (pushChar && pushChar.includes(c)) ++count;
     }
     return i;
   }
@@ -26073,7 +26407,7 @@
       parseScaleInterpolate(spec.interpolate, params);
     }
     if (spec.nice != null) {
-      params.nice = parseScaleNice(spec.nice);
+      params.nice = parseScaleNice(spec.nice, scope);
     }
     if (spec.bins != null) {
       params.bins = parseScaleBins(spec.bins, scope);
@@ -26102,7 +26436,6 @@
       }
       return; // default domain
     }
-
     return domain.signal ? scope.signalRef(domain.signal) : (isArray(domain) ? explicitDomain : domain.fields ? multipleDomain : singularDomain)(domain, spec, scope);
   }
   function explicitDomain(domain, spec, scope) {
@@ -26231,8 +26564,8 @@
 
   // -- SCALE NICE -----
 
-  function parseScaleNice(nice) {
-    return isObject(nice) ? {
+  function parseScaleNice(nice, scope) {
+    return nice.signal ? scope.signalRef(nice.signal) : isObject(nice) ? {
       interval: parseLiteral(nice.interval),
       step: parseLiteral(nice.step)
     } : parseLiteral(nice);
@@ -26326,6 +26659,8 @@
   const GuideTitleStyle = 'guide-title';
   const GroupTitleStyle = 'group-title';
   const GroupSubtitleStyle = 'group-subtitle';
+
+  /** All values of LegendType */
   const Symbols = 'symbol';
   const Gradient = 'gradient';
   const Discrete = 'discrete';
@@ -26906,7 +27241,7 @@
   }
   function getRole(spec) {
     const role = spec.role || '';
-    return !role.indexOf('axis') || !role.indexOf('legend') || !role.indexOf('title') ? role : spec.type === GroupMark ? ScopeRole : role || MarkRole;
+    return role.startsWith('axis') || role.startsWith('legend') || role.startsWith('title') ? role : spec.type === GroupMark ? ScopeRole : role || MarkRole;
   }
   function definition(spec) {
     return {
@@ -29206,9 +29541,10 @@
   }
 
   // -- Transforms -----
+
   extend(transforms, tx, vtx, encode$1, geo, force, label, tree, reg, voronoi, wordcloud, xf);
 
-  Object.defineProperty(exports, 'path', {
+  Object.defineProperty(exports, "path", {
     enumerable: true,
     get: function () { return d3Path.path; }
   });
@@ -29226,6 +29562,8 @@
   exports.GroupItem = GroupItem;
   exports.HOURS = HOURS;
   exports.Handler = Handler;
+  exports.HybridHandler = HybridHandler;
+  exports.HybridRenderer = HybridRenderer;
   exports.Info = Info;
   exports.Item = Item;
   exports.MILLISECONDS = MILLISECONDS;
@@ -29399,6 +29737,7 @@
   exports.sceneZOrder = zorder;
   exports.scheme = scheme;
   exports.serializeXML = serializeXML;
+  exports.setHybridRendererOptions = setHybridRendererOptions;
   exports.setRandom = setRandom;
   exports.span = span;
   exports.splitAccessPath = splitAccessPath;
